@@ -67,14 +67,16 @@ Where $I_i^1 = \sum_{X_j \in \hat{\Phi}^1,j \neq i} F_j^i/l(\|X_j-y_i\|) $ is th
 \todo[size=\small, color=green!40]{More introduction needed on next step to explain more on ideas behind using Palm Distributions}%
 \par
 %
-We denote $\textbf{P}^0$ as the Palm probability associated to the marked stationary PP $\hat{\Phi}$.  By probability of coverage of a typical node given it is a transmitter, we understand is equation~\eqref{eq:coverage}
+We denote $\textbf{P}^0$ as the Palm probability associated to the $\delta$ marked stationary PP $\hat{\Phi}$.  By probability of coverage of a typical node given it is a transmitter, we show is equation~\eqref{eq:coverage}
 %
 \begin{equation}\label{eq:coverage}
   \begin{split}
-  \textbf{P}^0\{m(x_0=1\|e_0=1)\} &= \textbf{E}^0[m(x_0)|e_0=1] \\
-  &= \frac{1}{\lambda_1\|B\|}\textbf{E}[\sum_i m(x_i) \mathbb{1}(x_i \in B)]
+  \textbf{P}^0\{\delta_0=1|e_0=1)\} &= \textbf{E}^0[\delta_0|e_0=1] \\
+  &= \frac{1}{\lambda_1\|B\|}\textbf{E}[\sum_i \delta_i \mathbb{1}(x_i \in B)]
 \end{split}
 \end{equation}
+%
+Equation~\eqref{eq:coverage} line one is understood as given the central point \textbf{0} is selected/able to transmit ($e_1=1$), the Palm Probability that the receiver $y_0$ has significant SINR (equation~\eqref{eq:coverage} is met) from transmitter $x_0$ located at \textbf{0}.  This probability is equal to the average $\delta_0$ mark of the central located points of transmitters which are selected to transmit, seen by the r.h.s. of~\eqref{eq:coverage}.\par
 %
 Unlike in Aloha type MAC schemes, in this Mat\'ern CSMA model, the probability of medium access of a typical node $p = \textbf{E}^0[e_i]$ is not given \textit{a priori} and it has to be determined.  $e_i$ are simply the medium access indicators, marking the points that survived the Mat\'ern process creation from the original PPP $\Phi$.  When calculating the probability of access to the channel, we must first calculate the expected number of neighbors of a typical node, which we denote as $\bar{N}(\lambda)$.  From~\cite{baccelli2009stochasticVII} we have Equation~\eqref{eq:neighbors}.
 %
@@ -106,6 +108,18 @@ node is selected by the MAC with the time frequency $p$, even if in different ti
 \section{System Model}
 x
 
+\section{Notation}
+%
+\begin{tabular}{ l | p{10cm} }
+  $e_i$ & the medium access indicator of node i; ($e_i = 1$ if node i is allowed to transmit in the considered time slot and $0$ otherwise). The random variables $e_i$ are hence \textit{i.i.d.} and independent of everything else, with $\textbf{P}](e_i = 1) = p$ ($p$ is the MAP). \\
+  \hline
+  $F_i^j$ & denotes the virtual power emitted by node $i$ (provided $e_i = 1$) towards receiver $y_j$ \\
+  \hline
+\end{tabular}
+
+
+%
 \bibliographystyle{IEEEtran}\bibliography{IEEEabrv,refs.bib}
+%
 
 \end{document}
