@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=latex 2013.5.30)  10 NOV 2015 17:00
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=latex 2013.5.30)  11 NOV 2015 19:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -695,14 +695,14 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 
 LaTeX Warning: Marginpar on page 4 moved.
 
-) (./paper.bbl [4]) [5] (./paper.aux) ) 
+[4]) (./paper.bbl) [5] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
- 10934 strings out of 493316
- 202439 string characters out of 6137930
- 259052 words of memory out of 5000000
- 14149 multiletter control sequences out of 15000+600000
+ 10937 strings out of 493316
+ 202470 string characters out of 6137930
+ 259078 words of memory out of 5000000
+ 14152 multiletter control sequences out of 15000+600000
  13465 words of font info for 51 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  63i,18n,76p,1060b,675s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on paper.dvi (5 pages, 31908 bytes).
+Output written on paper.dvi (5 pages, 33936 bytes).

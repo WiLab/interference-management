@@ -12,4 +12,29 @@ FC's utilize an orthogonal frequency division multiple access (OFDMA) medium acc
 We extend the notions from the slotted Aloha based analysis into this framework.  First we will provide a simplified model assuming a fixed resource usage or fractional usage of resources.  Then we will add additional complexity by providing a stochastic traffic model to the resource allocation of each FC.  This traffic model will be discussed first, and derivations provided into the geometry framework.
 \par
 %
-At a high level if we ignore UE feedback, we can model resource selection as an independent thinning of the network intensity $\lambda_{f}$ by the fraction of channels used $p$, creating a new PPP with intensity $\lambda_{tf}$.  
+At a high level if we ignore UE feedback\footnote{This is reasonable because...}, we can model resource selection as an independent thinning of the network intensity $\lambda_{f}$ by the fraction of channels used $p$, creating a new PPP with intensity $\lambda_{tf}$.  This thinning reduces the interference seen at each network node.  To understand how this effects performance we must define performance metrics and their relations to interference.\par
+%
+Assuming constant power $P$ of each network node and noise power $N$, the SINR at each receiver is shown in equation~\eqref{eq:SINR}.
+%
+\begin{equation}\label{eq:SINR}
+  SINR(\textbf{x}_i) = \frac{S}{I(\textbf{x}_i) + N}
+\end{equation}
+%
+$S$ and $I$, the power received from the desired transmitted and combined interferers, are provided in equation~\eqref{eq:Powers}.  $I$ is a shot noise (SN) process, formed by the sum of all spatially random points of $\Phi$.  To remove the path loss singularity around the receiver itself we will assume a minimum distance $\epsilon$ between the receiver and all transmitters.  The channel $h$ is a positive random variable with unit mean.
+%
+\begin{equation}\label{eq:Powers}
+  S = Pl_{\alpha,\epsilon}(u) = Ph_iu^{-\alpha},\quad I(\textbf{x}_i)=\sum_{k\in \Phi,k\neq i} Ph_kl_{\alpha,\epsilon}(|x_i-x_k|)
+\end{equation}
+%
+From SINR we can develop the performance metrics of the network.  We will begin with outage probability $q$.  Outage probability is defined in equation~\eqref{eq:outage} as the probability of SINR values below some threshold $T$.
+%
+\begin{equation}\label{eq:outage}
+  q(\lambda) = P{SINR<T}
+\end{equation}
+%
+\section{Modifications}
+%
+Vary number of resources used by FC across different intensities.\par
+%
+Have a stochastic resource usages, defined by a traffic model.\par
+%
