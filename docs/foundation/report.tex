@@ -1,0 +1,34 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\graphicspath{{Figures/}}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{float}
+
+\title{Interference in Small Cell Networks}
+
+\author{Travis F. Collins\\Srikanth Pagadarai\\Alexander M. Wyglinski}
+
+\date{\today}
+
+\begin{document}
+\maketitle
+
+% Section
+\input{system_model}
+
+% Appendix
+\newpage
+\appendix
+\input{appendix_a}
+
+% Biblography
+\newpage
+\bibliographystyle{IEEEtran}\bibliography{IEEEabrv,refs.bib}
+
+
+\end{document}
