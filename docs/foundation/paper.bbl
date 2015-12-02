@@ -43,4 +43,15 @@ J.~Illian, \emph{{Statistical analysis and modelling of spatial point
   \url{http://books.google.com/books?id=i9LAm7QCtu8C}
 \BIBentrySTDinterwordspacing
 
+\bibitem{Haenggi2008}
+M.~Haenggi and R.~K. Ganti, \emph{{Interference in Large Wireless Networks}},
+  2008, vol.~3, no.~2.
+
+\bibitem{Weber2012}
+\BIBentryALTinterwordspacing
+S.~Weber, ``{Transmission capacity of wireless networks},'' \emph{Arxiv
+  preprint arXiv:1201.0662}, vol.~xx, no.~xx, pp. 1--171, 2012. [Online].
+  Available: \url{http://arxiv.org/abs/1201.0662}
+\BIBentrySTDinterwordspacing
+
 \end{thebibliography}

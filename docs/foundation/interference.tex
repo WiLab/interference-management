@@ -1,0 +1,74 @@
+\subsection{Interference}
+%
+Now that we have a definition for interference in the SG model, we will provide the densities for this interference and how these densities can be used for SIR calculation and performance metrics.  The case we are considering is only the Rayleigh fading case with path loss exponent $\alpha=4$.  It has been shown in~\cite{Haenggi2008} that in non-fading cases the expected interference is infinite for $\alpha \geq 2$.  We selected $\alpha=4$, since this is commonly used for indoor applications\todo[size=\small,color=green!40]{Get citation}, which is the assumed environment of any SC deployment.\par
+%
+The performance metric we will study is called probability of successful transmission $p_{st}$.  This is simply the probability of the SINR being greater than some threshold $\Tau$.
+%
+\begin{equation}\label{eq:probability_succ_tran}
+  p_{st}(\Tau) = \textbf{P}(SINR>\Tau)
+\end{equation}
+%
+Equation~\eqref{eq:probability_succ_tran} can be rewritten in the case of Rayleigh fading where $S$ is exponentially distributed and $\textbf{E}[S] = M_s$:
+%
+\begin{equation}\label{eq:probability_succ_tran}
+  \begin{split}
+  p_{st}(\Tau) &= \textbf{P} \Big(\frac{S}{I+N}>\Tau \Big) \\
+  &= \textbf{P} ( S > \Tau (I+N) )\\
+  &= \exp(-M_s \Tau I)\exp(- M_s \Tau N)
+  \end{split}
+\end{equation}
+%
+Here $\exp(-\Tau I)$ and $\exp(-\Tau N)$ are the Laplace transforms of $I$ and $N$ respectively.  Therefore $p_{st}$ can be directly calculated from these transforms, rather than having to compute the distribution of $p_{st}$.  This is a common technique in the literature~\cite{Haenggi2008,Weber2012}.  For the sake of simplicity we will ignore noise in the system, can just consider interference.  We will first calculate the Laplace transforms of our interference and then provide densities for a specific case of~\eqref{eq:probability_succ_tran}.\par
+%
+Assuming fading for $h_i$ in~\eqref{eq:Powers}, and using the probability generating functional (PGFL) to determine the interference densities.  The Laplace transform of the second equation in~\eqref{eq:Powers}, assuming the PP is stationary, with points independent, and two-dimensional:
+%
+\begin{equation}\label{eq:lt_interference_fading}
+  \begin{split}
+  \mathcal{L}_I(s) &= \exp(-\lambda c_d \textbf{E}[h^\delta] \Gamma(1-\delta)s^\delta) \\
+  &= \exp(- \lambda \pi^{3/2} \sqrt{s} \textbf{E}[\sqrt{h}]))
+  \end{split}
+\end{equation}
+%
+In the case for Rayleigh fading where the $\delta^{th}$ moment can be written as $E[h^{\delta}]=\Gamma(1+\delta)=\sqrt{\pi}$, and with uses of Euler's reflection formula
+%
+\begin{equation}\label{eq:lt_interference_rayleigh}
+  \begin{split}
+  \mathcal{L}_I(s) &= \exp(-\lambda c_d \Gamma(1+\delta) \Gamma(1-\delta)s^\delta) \\
+   &= \exp(-\lambda c_d \delta \Gamma(\delta) \Gamma(1-\delta)s^\delta) \\
+   &= \exp(-\lambda c_d  \frac{\delta \pi}{sin(\pi \delta)} s^\delta) \\
+   &= \exp(- \lambda \pi^{2} \sqrt{s}))
+  \end{split}
+\end{equation}
+\todo[size=\small,color=green!40]{There is a factor of 2 missing here}
+%
+The resulting probability density function (PDF) of the last equation in~\eqref{eq:lt_interference_rayleigh} can be found by the inverse Laplace transform as follows, where $t$ is real:
+%
+\begin{equation}\label{eq:lt_interference_rayleigh}
+  f_I(t) = \frac{\lambda}{4} \Big( \frac{\pi}{t} \Big)^{3/2} \exp \Big(\frac{-\lambda^2 \pi^4}{16t}\Big)
+\end{equation}
+%
+\subsection{Performance Metric}
+%
+Now that we have the Laplace transforms for interference in the case of Rayleigh fading we can return back to our performance metric $p_{st}$.  The Laplace transform of the interference is $p_{st}$ (assuming only SIR), and $s$ is related as follows from $\mathcal{L}(s)=exp(-sX)$.
+%
+\begin{equation}
+  \begin{split}
+    p_{st}(\Tau) &= \textbf{P} (S>I \Tau), \quad \textbf{E}[S] = r^{-\alpha} \\
+    &= \exp \big( -I \Tau r^{-\alpha} \big)
+  \end{split}
+\end{equation}
+%
+Therefore $s = \Tau r^{-\alpha}$.  Now plugging that into~\eqref{eq:lt_interference_fading}, and then applying the Rayleigh fading assumption.  In the case of a PPP network of intensity $\lambda$ with all nodes transmitting, the probability of success can be written as follows:
+%
+\begin{equation}
+  \begin{split}
+        p_{st}(\Tau) &= \exp(-\lambda c_d \textbf{E}[h^\delta] \Gamma(1-\delta)s^\delta) \\
+        &= \exp(-\lambda c_d \Gamma(1+\delta) \Gamma(1-\delta)s^\delta) \\
+        &= \exp(-\lambda c_d \Gamma(1+\delta) \Gamma(1-\delta)(r^{-\alpha} \Tau))^\delta) \\
+        &= \exp(-\lambda c_d \Gamma(1+\delta) \Gamma(1-\delta) r^{-d} \Tau^\delta) \\
+    &= \exp \Big( -\lambda \pi^2 \frac{\sqrt{\Tau}}{2 r^2}  \Big),\quad d=2,\alpha=4
+  \end{split}
+\end{equation}
+\todo[size=\small,color=green!40]{Recheck last line}
+%
+This metric is
