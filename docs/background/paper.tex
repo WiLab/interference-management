@@ -1,0 +1,125 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\title{Interference Modeling in Small Cell Networks}
+
+\author{Travis F. Collins and Srikanth Pagadarai}
+
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Mathematical Background}
+The purpose of this document is to provide the mathematical foundation to understand analytical network capacity analysis under spatial structures using point processes (PP).
+The network we are modeling contains an infinite number of transmitters denoted by the homogeneous Poisson PP (PPP) $\Phi$, with intensity measure $\lambda$.  A point process is simply a collection of random variables spatial distributed on a plain according to specified distribution.  A PPP can be informally understood as a PP with uniform spaces points in an area \textit{B} with the number of points in areas of size \textit{B} being Poisson distributed with mean $\lambda$. For simplicity we will only be working with two dimensional plains, points $x\in\Phi$ and $x\in\mathbb{R}^2$, avoiding much of the confusing introduced by heavy measure theory based work.  $\lambda$ is a first order statistical property of a PP, defined as the mean number of points/events  $\textit{N}$ per unit area/volume $\textit{v}$ in any set $\textit{B}$~\cite{Illian2008}.  Equation~\eqref{eq:intensity} show this relation, where $\textbf{E}$ represents the expectation operation.  This is analogous to density of points in region or area.\par
+%
+\begin{equation}\label{eq:intensity}
+\lambda = \frac{\textbf{E}[N(B)]}{v(B)}
+\end{equation}
+%
+\subsection{Palm Probability}
+%
+Palm characteristics are probabilities or means that refer to individual points in a PP.  Meaning that we want statistics from individual points perspectives.  The usual approach considers a point at the origin \textbf{0}. However, the probability that a stationary point process has a point exactly at \textbf{0} is zero. Therefore, the probability that a PP $\Phi$ has some property provided that it has a point at \textbf{0} is a difficult quantity.\par
+%
+We determine the mean and probability related to an event of having a point at \textbf{0} as follows.  Consider an observation window W in which
+$\Phi$ has $\Phi(W) = n$ points. These points $x_1,..,x_n$ are taken in turn and $\Phi$ is shifted such that the relevant point lies at the origin \textbf{0}.  This process is repeated for each $x_i$.  For each shift, the number of points is counted within $r$ i.e. $b(\textbf{0},r)$.  Their average yields an estimate of the mean number of points in a sphere of radius $r$ centered at a PP point, where in all cases the point $x_i$ itself is never counted.  Second, each point is then marked.  If within the radius $r$, it will receive a mark $1$ and $0$ otherwise.  Then all the marks are then added and divided by $n$, the number of points in $\Phi$.  This is an estimate of the probability that a point in the PP has its nearest neighbor at a distance less than $r$~\cite{Illian2008}.\par
+%
+Mathematically in the Palm sense, the mean and probabilities are show in equations~\eqref{eq:mean} and \eqref{eq:prob} respectively.
+%
+\begin{equation}\label{eq:mean}
+  \textbf{E}_\textbf{0}(\Phi(b(\textbf{0},r) \setminus \{\textbf{0}\}))
+\end{equation}
+\begin{equation}\label{eq:prob}
+  \textbf{P}_\textbf{0}(\Phi(b(\textbf{0},r) \setminus \{\textbf{0}\})>0)
+\end{equation}
+%
+\section{Summary of Existing Work}
+%
+\cite{baccelli2009stochasticVII}
+\begin{itemize}
+  \item For CSMA: provides probability of transmission (media access), coverage probabilities, and rough estimates for successful transmission density
+  \item For Aloha: provides
+\end{itemize}
+
+\section{CSMA}
+%
+Representation of a CSMA network requires use of the Mat\'ern hard-core PP.  This PP requires a minimum distance $r$ between points, or in our case transmitting nodes.  A Mat\'ern PP is generated from a marked PPP, where each point $x$ uniformly selects a mark $m(x)\in[0,1]$.  Points with marks larger than their neighboring point's marks are deleted if their positions are within range $r$.  Mathematically if $m(x)<m(y)$ and $\|x-y\| \leq r$, point $y$ is deleted.  This is process called conservative, since points that are already deleted can delete other points with larger marks. This is inaccurate in CSMA networks, but it is a common technique in the literature literature~\cite{Nguyen2007}.\par
+%
+To analyze the intensity of such PP, requires conditioning on existence of points at specific locations.  Palm theory formalizes the notion of the conditional distribution of a PP given it has a point at some location. Note that for a PP without a fixed \textit{atom} at this particular location, the probability of the condition is equal to zero and the basic discrete definition of the conditional probability does not apply~\cite{baccelli2009stochastic}.\par
+%
+\subsection{Slotted Aloha}
+%
+Before we considered the complicated case of CSMA, let us first look at a simpler case of slotted aloha with PPP distributed transmitters.  In this case we will define the coverage, or non-outage, probability for a \textit{typical} node.  A transmit receive pair is able to communicate if the SINR at the receiver is above some threshold $T$.  To say it in another way, transmitter $X_i$ \textit{covers} receiver $y_i$ in the reference time slot if equation~\eqref{eq:sinr} is satisfied.
+%
+\begin{equation}\label{eq:sinr}
+  SINR_i = \frac{F_i^i/l(\|X_i - y_i\|)}{W + I_i^1} \geq T
+\end{equation}
+%
+Where $I_i^1 = \sum_{X_j \in \hat{\Phi}^1,j \neq i} F_j^i/l(\|X_j-y_i\|) $ is the shot noise associated with the marked PP $\hat{\Phi}^1$. Now under this condition let us apply the mark $\delta_i$ to each transmitter $x_i$ meeting this condition.  The newly marked points form the PP $\hat{\Phi}$.
+%
+\todo[size=\small, color=green!40]{More introduction needed on next step to explain more on ideas behind using Palm Distributions}%
+\par
+%
+We denote $\textbf{P}^0$ as the Palm probability associated to the $\delta$ marked stationary PP $\hat{\Phi}$.  By probability of coverage of a typical node given it is a transmitter, we show is equation~\eqref{eq:coverage}
+%
+\begin{equation}\label{eq:coverage}
+  \begin{split}
+  \textbf{P}^0\{\delta_0=1|e_0=1)\} &= \textbf{E}^0[\delta_0|e_0=1] \\
+  &= \frac{1}{\lambda_1\|B\|}\textbf{E}[\sum_i \delta_i \mathbb{1}(x_i \in B)]
+\end{split}
+\end{equation}
+%
+Equation~\eqref{eq:coverage} line one is understood as given the central point \textbf{0} is selected/able to transmit ($e_1=1$), the Palm Probability that the receiver $y_0$ has significant SINR (equation~\eqref{eq:coverage} is met) from transmitter $x_0$ located at \textbf{0}.  This probability is equal to the average $\delta_0$ mark of the central located points of transmitters which are selected to transmit, seen by the r.h.s. of~\eqref{eq:coverage}.\par
+%
+Unlike in Aloha type MAC schemes, in this Mat\'ern CSMA model, the probability of medium access of a typical node $p = \textbf{E}^0[e_i]$ is not given \textit{a priori} and it has to be determined.  $e_i$ are simply the medium access indicators, marking the points that survived the Mat\'ern process creation from the original PPP $\Phi$.  When calculating the probability of access to the channel, we must first calculate the expected number of neighbors of a typical node, which we denote as $\bar{N}(\lambda)$.  From~\cite{baccelli2009stochasticVII} we have Equation~\eqref{eq:neighbors}.
+%
+\begin{equation}\label{eq:neighbors}
+  \begin{split}
+  \bar{N} &= \textbf{E}^0[\sum_{(x_j,m_i,\textbf{F}_j^0)\in\hat{\Phi}}\mathbb{1}(\frac{F_j^0}{l(\|x_i-x_j\|)}\geq P_0)] \\
+  &= \lambda\int_{\mathbb{R}^2} \textbf{P}\{F\geq P_0l(\|x\|) \}dx \\
+  &= 2\pi \lambda \int_0^\infty (1-G(P_0l(r)))rdr
+\end{split}
+\end{equation}
+%
+In equation~\eqref{eq:neighbors} $F_j^0$ denotes the power emitted by node $j$, given that it is selected to transmit, towards the origin $\textbf{0}$.  $l()$ is the pathloss model used in the scenario (Ex: Power Law $l(r)=r^{-\alpha}$),  $P_0$ is the detection threshold for the receiver at the $\textbf{0}$.  $G$ is simply the CDF of the fading of the transmitters.  If $F$ is Rayleigh fading (exponential $F$ with mean $\frac{1}{\mu}$), $\bar{N}$ becomes:\par
+%
+\begin{equation}
+  \bar{N} = 2 \pi \lambda \int_0^\infty  e^{-P_0 \mu l(r)} r dr
+\end{equation}
+%
+Taking equation~\eqref{eq:neighbors} and rewriting the probability of medium access, we get equation~\eqref{eq:probra} based on void probability.
+%
+\begin{equation}\label{eq:probra}
+  p = \textbf{E}[e_0] = \int e^{-\bar{N}t} dt= \frac{1-e^{\bar{N}}}{\bar{N}}
+\end{equation}
+%
+Note by the ergodicity of the model that $p$ represents some spatial average, namely an average over all nodes of the PPP realizations. More precisely $\lambda p$ is the density of the Mat\'ern PP of nodes authorized to transmit at a given time slot. However, it does not mean that any given
+node is selected by the MAC with the time frequency $p$, even if in different time slots the marks of each point are re-sampled independently.  This $p$ is better understood as a network wide proportion, rather than a local average.
+
+
+
+\section{System Model}
+x
+
+\section{Notation}
+%
+\begin{tabular}{ l | p{10cm} }
+  $e_i$ & the medium access indicator of node i; ($e_i = 1$ if node i is allowed to transmit in the considered time slot and $0$ otherwise). The random variables $e_i$ are hence \textit{i.i.d.} and independent of everything else, with $\textbf{P}](e_i = 1) = p$ ($p$ is the MAP). \\
+  \hline
+  $F_i^j$ & denotes the virtual power emitted by node $i$ (provided $e_i = 1$) towards receiver $y_j$ \\
+  \hline
+\end{tabular}
+
+
+%
+\bibliographystyle{IEEEtran}\bibliography{IEEEabrv,refs.bib}
+%
+
+\end{document}
