@@ -1,0 +1,55 @@
+\documentclass[a4paper]{article}
+
+% For citations with [1-3] styling
+\usepackage[noadjust]{cite}
+\usepackage{filecontents}
+\renewcommand{\citedash}{--}
+
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\graphicspath{{Figures/}}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{float}
+
+% Title and Authors
+\title{Interference in Small Cell Networks}
+
+\author{Travis F. Collins\\Srikanth Pagadarai\\Alexander M. Wyglinski}
+
+\date{\today}
+
+\begin{document}
+\maketitle
+
+% Stochastic Geometry
+\input{math_background}
+% System Model
+%\input{smallcells}
+% Aloha MAC
+%\input{aloha}
+% LTE with Stochastic Geometry
+%\input{lte_model}
+
+% Math Notation
+\newpage
+\input{notation}
+
+% Appendix
+\newpage
+\appendix
+\input{appendix_a}
+\newpage
+\input{appendix_b}
+\newpage
+\input{appendix_c}
+
+% Biblography
+\newpage
+\bibliographystyle{IEEEtran}\bibliography{IEEEabrv,refs.bib}
+
+
+\end{document}

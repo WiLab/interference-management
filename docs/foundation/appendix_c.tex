@@ -1,0 +1,50 @@
+\section{Campbell's Theorem}\label{app:campbell}
+%
+The Campbell theorem is a very useful tool for the calculation of mean values of point process characteristics or statistical estimators. Many of these have the form:
+%
+\begin{equation}
+  \sum_{x \in \Phi} f(x)
+\end{equation}
+%
+Basically, the Campbell theorem states that the mean of such a sum can be calculated by solving a volume integral.  For example, the mean value of a sum $S_f$ with non-negative $f(x)$ ($S_f = \sum_{x \in \Phi} f(x)$) can be calculated using the Campbell theorem as follows:
+\begin{equation}\label{eq:campbell_ex1}
+  \textbf{E}[S_f] = \textbf{E}\Big[ \sum_{x \in \Phi} f(x) \Big] = \int f(x) \lambda(x) dx
+\end{equation}
+%
+Where $\lambda(x)$ is a density function, and proportional to the intensity of the point density around a location $x$.
+\par
+%
+A common usage is with the indicator function were $f(x) = \mathbb{1}_\textit{A}(x)$ and~\eqref{eq:campbell_ex1} can be rewritten as:
+\begin{equation}
+  \int \mathbb{1}_\textit{A}(x) \lambda(x) dx = \Delta(\textit{A})
+\end{equation}
+%
+Here $\Delta(\textit{A})$ is an intensity measure (deterministic).  Much of the time $\lambda(x)$ is constant.  When $\lambda(x)$ is constant, then we are in a simple stationary case:
+%
+\begin{equation}\label{eq:campbell_stationary}
+  \textbf{E}[S_f] = \textbf{E}\Big[ \sum_{x \in \Phi} f(x) \Big] = \lambda \int_{\mathbb{R}^d} f(x) dx
+\end{equation}
+%
+\subsection{Campbell–Mecke Formula}
+The Palm mean appears in a refined form of the Campbell theorem, the Campbell–Mecke formula:
+%
+\begin{equation}\label{eq:campbell_mecke}
+  \textbf{E}\Big[ \sum_{x \in \Phi} f(x,\Phi) \Big] = \lambda \int \textbf{E}_0 [f(x,\Phi_{-x})] dx = \lambda \textbf{E}_0 \Big[ \int f(x,\Phi_{-x}) dx \Big]
+\end{equation}
+%
+See page 303 of~\ref{Illian2008} for additional examples of its use.
+%
+\section{Slivnyak–Mecke Theorem}
+%
+The Slivnyak–Mecke theorm provides a connection from Palm distributions to traditional probabilistic analysis.  The theorem states that the Palm distribution of a homogeneous Poisson process coincides with that of the point process obtained by adding the origin $\textbf{0}$ to the homogeneous Poisson process. Mathematically:
+%
+\begin{equation}
+  P_0(\Phi \in \textit{A}) = P(\Phi \cup \{ \textbf{0} \} \in \textit{A} )
+\end{equation}
+%
+The mean is also related as follows:
+%
+\begin{equation}
+  \textbf{E}_0 (\Phi(B)) = \textbf{E} (\Phi(B)) + \mathbb{1}_{\textit{A}} (\textbf{0})
+\end{equation}
+%

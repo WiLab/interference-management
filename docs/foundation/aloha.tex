@@ -1,0 +1,48 @@
+\section{Slotted Aloha}
+%
+Before we considered the complicated case of CSMA, let us first look at a simpler case of slotted aloha with PPP distributed transmitters.  In this case we will define the coverage, or non-outage, probability for a \textit{typical} node.  A transmit receive pair is able to communicate if the SINR at the receiver is above some threshold $T$.  To say it in another way, transmitter $X_i$ \textit{covers} receiver $y_i$ in the reference time slot if equation~\eqref{eq:sinr} is satisfied.
+%
+\begin{equation}\label{eq:sinr}
+  SINR_i = \frac{F_i^i/l(\|X_i - y_i\|)}{W + I_i^1} \geq T
+\end{equation}
+%
+Where $I_i^1 = \sum_{X_j \in \hat{\Phi}^1,j \neq i} F_j^i/l(\|X_j-y_i\|) $ is the shot noise associated with the marked PP $\hat{\Phi}^1$. Now under this condition let us apply the mark $\delta_i$ to each transmitter $x_i$ meeting this condition.  The newly marked points form the PP $\hat{\Phi}$.
+%
+\todo[size=\small, color=green!40]{More introduction needed on next step to explain more on ideas behind using Palm Distributions}%
+\par
+%
+We denote $\textbf{P}^0$ as the Palm probability associated to the $\delta$ marked stationary PP $\hat{\Phi}$.  By probability of coverage of a typical node given it is a transmitter, we show is equation~\eqref{eq:coverage}
+%
+\begin{equation}\label{eq:coverage}
+  \begin{split}
+  \textbf{P}^0\{\delta_0=1|e_0=1)\} &= \textbf{E}^0[\delta_0|e_0=1] \\
+  &= \frac{1}{\lambda_1\|B\|}\textbf{E}[\sum_i \delta_i \mathbb{1}(x_i \in B)]
+\end{split}
+\end{equation}
+%
+Equation~\eqref{eq:coverage} line one is understood as given the central point \textbf{0} is selected/able to transmit ($e_1=1$), the Palm Probability that the receiver $y_0$ has significant SINR (equation~\eqref{eq:coverage} is met) from transmitter $x_0$ located at \textbf{0}.  This probability is equal to the average $\delta_0$ mark of the central located points of transmitters which are selected to transmit, seen by the r.h.s. of~\eqref{eq:coverage}.\par
+%
+Unlike in Aloha type MAC schemes, in this Mat\'ern CSMA model, the probability of medium access of a typical node $p = \textbf{E}^0[e_i]$ is not given \textit{a priori} and it has to be determined.  $e_i$ are simply the medium access indicators, marking the points that survived the Mat\'ern process creation from the original PPP $\Phi$.  When calculating the probability of access to the channel, we must first calculate the expected number of neighbors of a typical node, which we denote as $\bar{N}(\lambda)$.  From~\cite{baccelli2009stochasticVII} we have Equation~\eqref{eq:neighbors}.
+%
+\begin{equation}\label{eq:neighbors}
+  \begin{split}
+  \bar{N} &= \textbf{E}^0[\sum_{(x_j,m_i,\textbf{F}_j^0)\in\hat{\Phi}}\mathbb{1}(\frac{F_j^0}{l(\|x_i-x_j\|)}\geq P_0)] \\
+  &= \lambda\int_{\mathbb{R}^2} \textbf{P}\{F\geq P_0l(\|x\|) \}dx \\
+  &= 2\pi \lambda \int_0^\infty (1-G(P_0l(r)))rdr
+\end{split}
+\end{equation}
+%
+In equation~\eqref{eq:neighbors} $F_j^0$ denotes the power emitted by node $j$, given that it is selected to transmit, towards the origin $\textbf{0}$.  $l()$ is the pathloss model used in the scenario (Ex: Power Law $l(r)=r^{-\alpha}$),  $P_0$ is the detection threshold for the receiver at the $\textbf{0}$.  $G$ is simply the CDF of the fading of the transmitters.  If $F$ is Rayleigh fading (exponential $F$ with mean $\frac{1}{\mu}$), $\bar{N}$ becomes:\par
+%
+\begin{equation}
+  \bar{N} = 2 \pi \lambda \int_0^\infty  e^{-P_0 \mu l(r)} r dr
+\end{equation}
+%
+Taking equation~\eqref{eq:neighbors} and rewriting the probability of medium access, we get equation~\eqref{eq:probra} based on void probability.
+%
+\begin{equation}\label{eq:probra}
+  p = \textbf{E}[e_0] = \int e^{-\bar{N}t} dt= \frac{1-e^{\bar{N}}}{\bar{N}}
+\end{equation}
+%
+Note by the ergodicity of the model that $p$ represents some spatial average, namely an average over all nodes of the PPP realizations. More precisely $\lambda p$ is the density of the Mat\'ern PP of nodes authorized to transmit at a given time slot. However, it does not mean that any given
+node is selected by the MAC with the time frequency $p$, even if in different time slots the marks of each point are re-sampled independently.  This $p$ is better understood as a network wide proportion, rather than a local average.

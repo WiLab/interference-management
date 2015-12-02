@@ -1,0 +1,25 @@
+# Travis' LaTex make script for linux and mac
+
+MAINFILE="paper"# without extension
+#$GoodFileExt="tex pdf bib" # List of file types to keep
+
+############# Do Not Edit #########
+
+# Logs file types
+LOGSFT=(log blg bbl gummi)
+
+#Targets
+all:
+	latex $(addsuffix .tex,$(MAINFILE))  >/dev/null
+	latex $(addsuffix .tex,$(MAINFILE))  >/dev/null
+	bibtex $(MAINFILE)
+	latex $(addsuffix .tex,$(MAINFILE))  >/dev/null
+	latex $(addsuffix .tex,$(MAINFILE))  >/dev/null
+	dvips $(addsuffix .dvi,$(MAINFILE)) >/dev/null
+	ps2pdf $(addsuffix .ps,$(MAINFILE)) >/dev/null
+  # Move logs to Logs folder
+	[ ! -d Logs  ] && mkdir Logs
+	for filename in $(LOGFT); do \
+		echo $$filename;\
+	done
+#		if [-e $(MAINFILE).$$filename]; then mv $(MAINFILE).$$filename Logs;fi
