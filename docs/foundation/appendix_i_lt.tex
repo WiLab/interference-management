@@ -1,0 +1,123 @@
+\section{Laplace Transform}\label{app:Interference_LT}
+%
+\begin{equation}
+  \begin{split}
+p_{st}(\theta) &= \mathcal{L}_I (s) = \textbf{E}_I \big[ exp(-I \theta) \big] \\
+&= \textbf{E} \Big[ \exp \big(-s\sum_{r \in \Phi} h_r r^{-\alpha}\big) \Big] \\
+\end{split}
+\end{equation}
+%
+\begin{equation}
+  \begin{split}
+    \mathcal{L}_I (s) &= \textbf{E}_\Phi \Big[ \prod_{r \in \Phi} \textbf{E}_h [\exp(-sh_rr^{-\alpha})] \Big] \\
+  \end{split}
+\end{equation}
+%
+Applying a probability generating functional identity:
+%
+\begin{equation}
+  \begin{split}
+    \mathcal{L}_I (s) &= \textbf{E}_\Phi \Big[ \prod_{r \in \Phi} v(r) \Big],\quad v(r) = \textbf{E}_h [\exp(-sh_rr^{-\alpha})] \\
+    & = \exp \Big( -\textbf{E}_h(\underbrace{(\int_0^\infty (1-\exp(-shr^{-\alpha}))\lambda^{'}(r)dr}_\text{A} ) \Big)
+  \end{split}
+\end{equation}
+%
+Swapping expectation and integral and conditioning on $h$, the integral is:
+%
+\begin{equation}
+  \lambda^{'}(r) = \lambda c_d d r^{d-1} \quad \delta = d/\alpha
+\end{equation}
+%
+\begin{equation}
+  \begin{split}
+    A &= \int_0^\infty (1-\exp(-shr^{-\alpha}))\lambda^{'}(r)dr \\
+    &= \lambda c_d \int_0^\infty (1-\exp(-shr^{-d/\delta}))dr^{d-1}dr \\
+  \end{split}
+\end{equation}
+%
+Apply our scenario specification of two-dimensional system:
+%
+\begin{equation}
+  d = 2 \rightarrow c_d=\pi
+\end{equation}
+%
+\begin{equation}
+  \begin{split}
+A &= 2 \lambda \pi \int_0^\infty (1-\exp(-shr^{-2/\delta})) r dr\\
+\end{split}
+\end{equation}
+%
+\begin{equation}
+  \begin{split}
+  r^\alpha \rightarrow y, \delta = 2/\alpha\\
+  \alpha r^{\alpha-1}dr \rightarrow dy \\
+  r dr \rightarrow \frac{r^-\alpha}{\alpha}(r^2) dy \\
+  r dr \rightarrow \frac{\delta}{2}(y^{\delta-1}) dy
+  \end{split}
+\end{equation}
+%
+\begin{equation}
+  \begin{split}
+A &= \lambda \pi \int_0^\infty (1-\exp(-sh/y)) \delta y^{\delta-1}dy \\
+  \end{split}
+\end{equation}
+%
+\begin{equation}
+  \begin{split}
+  y^{-1} \rightarrow x\\
+  -y^{-2} dy \rightarrow dx\\
+  dy \rightarrow -x^{-2x} dx
+  \end{split}
+\end{equation}
+%
+\begin{equation}
+  \begin{split}
+A &= -\lambda \pi \int_0^\infty \underbrace{(1-\exp(-shx))}_\text{u} \underbrace{ \delta x^{-\delta-1} }_\text{$v^{\prime}$} dx \\
+&= uv-\int u^\prime v = [1-\exp(-shx)]x^{-\delta} + \int_0^\infty x^{-\delta} sh \exp(-shx) dx\\
+  \end{split}
+\end{equation}
+%
+\begin{equation}
+\textbf{E}_{h} \Big[ [1-\exp(-shx)]x^{-\delta} \Big] = 0\\
+\end{equation}
+%
+\begin{equation}
+  \begin{split}
+A& = \lambda \pi \int_0^\infty x^{-\delta} sh e^{-shx} dx\\
+  \end{split}
+\end{equation}
+%
+\begin{equation}
+  \begin{split}
+  shx \rightarrow t\\
+  sh dx \rightarrow dt\\
+  \end{split}
+\end{equation}
+%
+\begin{equation}
+  \begin{split}
+A& = \lambda \pi \int_0^\infty (t/sh)^{-\delta} e^{-t} dt\\
+  \end{split}
+\end{equation}
+%
+\begin{equation}
+  \begin{split}
+  \Gamma(p) = \int_{0}^{\infty} t^{p-1} e^{-t} dt
+  \end{split}
+\end{equation}
+%
+\begin{equation}
+  \begin{split}
+A& = \lambda \pi (sh)^{\delta} \int_0^\infty t^{-\delta} e^{-t} dt\\
+&= \lambda \pi (sh)^{\delta} \Gamma(1-\delta)\\
+  \end{split}
+\end{equation}
+%
+Placing $A$ back into $\mathcal{L}_I$:
+%
+\begin{equation}
+  \begin{split}
+    \mathcal{L}_I (s) &= \exp(-\lambda \pi \textbf{E}_h(h^\delta)\Gamma(1-\delta)s^\delta) \\
+  \end{split}
+\end{equation}
+%

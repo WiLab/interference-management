@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.3.2)  2 DEC 2015 17:55
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.3.2)  7 DEC 2015 10:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -697,7 +697,7 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 
 LaTeX Warning: Reference `Illian2008' on page 8 undefined on input line 35.
 
-) [8] (./paper.bbl) [9] (./paper.aux)
+) [8] (./appendix_i_lt.tex [9]) [10] (./paper.bbl) [11] (./paper.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -706,12 +706,12 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 11137 strings out of 493305
- 202640 string characters out of 6139898
- 262067 words of memory out of 5000000
- 14331 multiletter control sequences out of 15000+600000
+ 11146 strings out of 493305
+ 202850 string characters out of 6139898
+ 265152 words of memory out of 5000000
+ 14337 multiletter control sequences out of 15000+600000
  13465 words of font info for 51 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 63i,19n,80p,981b,675s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 63i,23n,80p,981b,675s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on paper.dvi (9 pages, 41648 bytes).
+Output written on paper.dvi (11 pages, 49756 bytes).
